@@ -32,6 +32,7 @@ public class MeusAnimais extends AppCompatActivity implements View.OnClickListen
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_meus_animais);
 
+        // BOTOES
         btVoltarPets = findViewById(R.id.btVoltarPets);
         btCadastroPets = findViewById(R.id.btCadastroPets);
         containerAnimais = findViewById(R.id.containerAnimais);
@@ -43,43 +44,42 @@ public class MeusAnimais extends AppCompatActivity implements View.OnClickListen
         // Renderiza a lista de pets na tela
         exibirMeusAnimais();
     }
-        private void exibirMeusAnimais() {
-            containerAnimais.removeAllViews();
-            List<Pet> listaPets = controller.listar();
+    private void exibirMeusAnimais() {
+        containerAnimais.removeAllViews();
+        List<Pet> listaPets = controller.listar();
 
-            for (final Pet pet : listaPets) {
-                // 1. "Infla" o layout customizado que criamos
-                View cardView = getLayoutInflater().inflate(R.layout.item_pet, containerAnimais, false);
+        for (final Pet pet : listaPets) {
+            // 1. "Infla" o layout customizado que criamos
+            View cardView = getLayoutInflater().inflate(R.layout.item_pet, containerAnimais, false);
 
-                // 2. Referencia os componentes de dentro do card
-                TextView txtNome = cardView.findViewById(R.id.txtNomeCard);
-                TextView txtEspecie = cardView.findViewById(R.id.txtEspecieCard);
-                TextView txtId = cardView.findViewById(R.id.txtIdCard);
+            // 2. Referencia os componentes de dentro do card
+            TextView txtNome = cardView.findViewById(R.id.txtNomeCard);
+            TextView txtEspecie = cardView.findViewById(R.id.txtEspecieCard);
+            TextView txtId = cardView.findViewById(R.id.txtIdCard);
 
-                // 3. POO: Define o texto usando os dados do objeto atual
-                txtNome.setText(pet.getNome());
-                txtEspecie.setText(pet.getEspecie() + " - " + pet.getPorte());
-                txtId.setText("ID: " + pet.getId());
+            // 3. POO: Define o texto usando os dados do objeto atual
+            txtNome.setText(pet.getNome());
+            txtEspecie.setText(pet.getEspecie() + " - " + pet.getPorte());
+            txtId.setText("ID: " + pet.getId());
 
-                // 4. Configura o clique para abrir o perfil
-                cardView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(MeusAnimais.this, PerfilPetActivity.class);
-                        intent.putExtra("PET_OBJETO", pet);
-                        startActivity(intent);
-                    }
-                });
+            // 4. Configura o clique para abrir o perfil
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MeusAnimais.this, PerfilPetActivity.class);
+                    intent.putExtra("PET_OBJETO", pet);
+                    startActivity(intent);
+                }
+            });
 
-                // 5. Adiciona o card pronto ao container da tela
-                containerAnimais.addView(cardView);
-            }
+            // 5. Adiciona o card pronto ao container da tela
+            containerAnimais.addView(cardView);
         }
+    }
     @Override
     protected void onResume() {
-        super.onResume();
-        // Toda vez que você voltar para esta tela, ele vai buscar no banco
-        // e desenhar os botões atualizados.
+        super.onResume(); // "onResume()" --> Toda vez que você voltar para esta tela, ele vai buscar no banco
+        // e trazer os botões atualizados
         exibirMeusAnimais();
     }
         // Método utilitário para converter DP em Pixels mantendo o layout proporcional
@@ -91,15 +91,15 @@ public class MeusAnimais extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        // se a origem do click foi no botão Tela2
+        // AO CLICAR EM NO BOTÃO "btCadastroPets" VAI PARA A TELA Form1
         if (view.getId() == R.id.btCadastroPets){
-            // Chamar a tela MeusAnimais
+            // Chama a tela Form1
             Intent cadastrarPet = new Intent(this, Form1.class);
             startActivity(cadastrarPet);
         }
-        // se a origem do click foi no botão Tela2
+        // AO CLICAR EM NO BOTÃO "btVoltarPets" VAI PARA A TELA MainActivity
         if (view.getId() == R.id.btVoltarPets){
-            // Chamar a tela MeusAnimais
+            // Chama a tela MainActivity
             Intent main = new Intent(this, MainActivity.class);
             startActivity(main);
         }

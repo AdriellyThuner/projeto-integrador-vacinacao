@@ -37,33 +37,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        // se a origem do click foi no botão Tela1
+        // AO CLICAR EM NO BOTÃO "btCarteiraVacinacao" VAI PARA A TELA CARTEIRA E VACINACAO
         if (view.getId() == R.id.btCarteiraVacinacao){
-            // Chamar a tela CarteiraVacinacao
-            Intent tela1 = new Intent(this, MeusAnimais.class);
+            // Chama a tela MeusAnimais
+            Intent tela1 = new Intent(this, MeusAnimais.class); // Mudar a tela!
             startActivity(tela1);
         }
         if (view.getId() == R.id.iconUsuario){
-            // Chamar a tela CarteiraVacinacao
+            // Chama a tela InfoUsuario
             Intent tela1 = new Intent(this, InfoUsuario.class);
             startActivity(tela1);
         }
-        // se a origem do click foi no botão Tela2
+        // AO CLICAR EM NO BOTÃO "btMeusAnimais" VAI PARA A TELA MEUS PETS/ANIMAIS
         if (view.getId() == R.id.btMeusAnimais){
-            // Chamar a tela MeusAnimais
+            // Chama a tela MeusAnimais
             Intent pets = new Intent(this, MeusAnimais.class);
             startActivity(pets);
         }
-        // se a origem do click foi no botão Tela2
+        // AO CLICAR EM NO BOTÃO "btCalendarioGeral" VAI PARA A TELA CALENDARIO GERAL
         if (view.getId() == R.id.btCalendarioGeral){
-            // Chamar a tela MeusAnimais
-            Intent tela2 = new Intent(this, Form3.class);
+            // Chama a tela Form3
+            Intent tela2 = new Intent(this, Form3.class); // Mudar a tela!
             startActivity(tela2);
         }
-
-        // se a origem do click foi no botão Tela2
+        // AO CLICAR EM NO BOTÃO "btCalendarioGeral" VAI PARA A TELA MEU PERFIL
         if (view.getId() == R.id.btMeuPerfil){
-            // Chamar a tela MeusAnimais
+            // Chamar a tela InfoUsuario
             Intent infoUsuario = new Intent(this, InfoUsuario.class);
             startActivity(infoUsuario);
         }

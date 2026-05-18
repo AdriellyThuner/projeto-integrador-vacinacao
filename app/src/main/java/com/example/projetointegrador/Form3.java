@@ -101,16 +101,16 @@ public class Form3 extends AppCompatActivity implements View.OnClickListener{
             }
         }
 
-        // se a origem do click foi no botão Tela2
+        // VOLTA PARA O FORM2
         if (view.getId() == R.id.btVoltar3){
             // Chamar a tela MeusAnimais
             Intent form2 = new Intent(this, Form2.class);
             startActivity(form2);
         }
-        // se a origem do click foi no botão Tela2
+        // VOLTA PARA A TELA MEUS PETS/ANIMAIS
         if (view.getId() == R.id.btFechar3){
             // Chamar a tela MeusAnimais
-            Intent main = new Intent(this, MainActivity.class);
+            Intent main = new Intent(this, MeusAnimais.class);
             startActivity(main);
         }
 

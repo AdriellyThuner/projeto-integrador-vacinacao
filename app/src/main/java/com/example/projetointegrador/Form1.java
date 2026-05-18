@@ -82,7 +82,7 @@ public class Form1 extends AppCompatActivity implements View.OnClickListener {
                 idade = Integer.parseInt(idadeStr);
             }
 
-            // CAPTURAR PORTE
+            // PEGA O PORTE
             int idSelecionado = rgPorte.getCheckedRadioButtonId();
 
             if (idSelecionado == -1) {
