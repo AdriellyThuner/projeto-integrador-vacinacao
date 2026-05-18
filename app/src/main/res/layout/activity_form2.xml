@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFCFC"
+        android:background="#6D6D6D"
         android:orientation="vertical">
 
         <!-- Título -->
@@ -22,8 +22,7 @@
             <View
                 android:id="@+id/view13"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:background="#E6E5E5"
+                android:layout_height="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -33,13 +32,15 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/fundo_form"
             android:layout_height="match_parent">
 
             <ImageButton
                 android:id="@+id/btVoltar2"
                 android:layout_width="62dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="26dp"
                 android:backgroundTint="#FDFAFA"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -52,12 +53,12 @@
                 android:id="@+id/btFechar2"
                 android:layout_width="34dp"
                 android:layout_height="33dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="26dp"
                 android:layout_marginEnd="28dp"
                 android:backgroundTint="#FDFAFA"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+                app:srcCompat="@drawable/bt_fechar" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -88,7 +89,7 @@
                         android:layout_width="183dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="40dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -123,7 +124,7 @@
                         <RadioButton
                             android:id="@+id/rbNao"
                             android:layout_width="86dp"
-                            android:layout_height="50dp"
+                            android:layout_height="40dp"
                             android:text="Não"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.122"
@@ -135,15 +136,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="5dp"
                     android:text="Se sim, qual?" />
 
                 <EditText
                     android:id="@+id/txtEnfermidade"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="44dp"
+                    android:hint="Digite a enfermidade"
                     android:layout_marginBottom="12dp"
                     android:ems="10"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:background="@drawable/customiza_campo"
                     android:inputType="text"
                     android:textSize="14sp" />
 
@@ -156,8 +160,12 @@
                 <Spinner
                     android:id="@+id/spLocal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="44dp"
                     android:padding="5dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:popupBackground="@drawable/spinner_dropdown_bg"
+                    android:background="@drawable/customiza_campo"
                     android:layout_marginBottom="20dp"/>
 
 

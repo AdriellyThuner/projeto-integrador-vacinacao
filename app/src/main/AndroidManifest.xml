@@ -12,10 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetoIntegrador">
         <activity
-            android:name=".testelogin"
+            android:name=".InfoUsuario"
             android:exported="false" />
         <activity
-            android:name=".ListarBanco"
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilPetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ConfirmaForms"
             android:exported="false" />
         <activity
             android:name=".Form1"
@@ -30,7 +36,7 @@
             android:name=".MeusAnimais"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFCFC"
+        android:background="#6D6D6D"
         android:orientation="vertical">
 
         <!-- Título -->
@@ -22,8 +22,7 @@
             <View
                 android:id="@+id/view13"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:background="#E6E5E5"
+                android:layout_height="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -33,13 +32,15 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/fundo_form">
 
             <ImageButton
                 android:id="@+id/btVoltar"
                 android:layout_width="62dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="26dp"
                 android:backgroundTint="#FDFAFA"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -52,12 +53,12 @@
                 android:id="@+id/btFechar"
                 android:layout_width="34dp"
                 android:layout_height="33dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="26dp"
                 android:layout_marginEnd="28dp"
                 android:backgroundTint="#FDFAFA"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+                app:srcCompat="@drawable/bt_fechar" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -75,10 +76,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="Informações básicas"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"/>
+                    android:textStyle="bold" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -89,7 +90,7 @@
                         android:layout_width="183dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="40dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -100,80 +101,99 @@
 
                 <!-- Nome -->
                 <TextView
-                    android:text="Nome *"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp" />
+                    android:layout_marginBottom="10dp"
+                    android:text="Nome *" />
 
                 <EditText
                     android:id="@+id/txtNome"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="44dp"
                     android:layout_marginBottom="12dp"
+                    android:background="@drawable/customiza_campo"
                     android:ems="10"
+                    android:hint="Digite o nome do pet"
                     android:inputType="text"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:pointerIcon="cell"
+                    android:textColorLink="#673AB7"
                     android:textSize="14sp" />
 
                 <!-- Idade -->
 
                 <TextView
-                    android:text="Idade aproximada *"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginBottom="10dp"
+                    android:text="Idade aproximada" />
 
                 <EditText
                     android:id="@+id/txtIdade"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="44dp"
                     android:layout_marginBottom="12dp"
+                    android:background="@drawable/customiza_campo"
                     android:ems="10"
+                    android:hint="Digite a idade"
                     android:inputType="number"
+                    android:maxLength="2"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
                     android:textSize="14sp" />
 
                 <!-- Sexo -->
                 <TextView
-                    android:text="Sexo *"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp" />
+                    android:layout_marginBottom="5dp"
+                    android:text="Sexo *" />
 
                 <Spinner
                     android:id="@+id/spSexo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/customiza_campo"
                     android:padding="5dp"
-                    android:layout_marginBottom="14dp" />
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:popupBackground="@drawable/spinner_dropdown_bg" />
 
                 <!-- Data -->
 
                 <TextView
-                    android:text="Data de nascimento"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginBottom="10dp"
+                    android:text="Data de nascimento" />
 
                 <EditText
                     android:id="@+id/txtData"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/customiza_campo"
                     android:ems="10"
+                    android:hint="00/00/0000"
                     android:inputType="date"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="12dp"/>
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textSize="14sp" />
 
                 <!-- Porte -->
                 <TextView
-                    android:text="Porte"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="Porte *" />
 
                 <RadioGroup
                     android:id="@+id/rgPorte"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginBottom="12dp">
+                    android:layout_marginBottom="12dp"
+                    android:orientation="vertical">
 
                     <RadioButton
                         android:id="@+id/rbGrande"
@@ -191,36 +211,39 @@
                         android:id="@+id/rgPequeno"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pequeno"/>
+                        android:text="Pequeno" />
                 </RadioGroup>
 
                 <!-- Espécie -->
                 <TextView
-                    android:text="Especie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"/>
+                    android:layout_marginBottom="12dp"
+                    android:text="Espécie *" />
 
                 <Spinner
                     android:id="@+id/spEspecie"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/customiza_campo"
                     android:padding="5dp"
-                    android:layout_marginBottom="30dp"/>
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:popupBackground="@drawable/spinner_dropdown_bg" />
 
                 <!-- Botão -->
 
                 <Button
+                    android:id="@+id/btProximo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#282626"
-                    android:id="@+id/btProximo"
-                    android:text="Próximo"/>
+                    android:text="Próximo" />
 
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
     </LinearLayout>

@@ -71,41 +71,36 @@ public class Form3 extends AppCompatActivity implements View.OnClickListener{
             String sexo = intent.getStringExtra("sexo");
             String data = intent.getStringExtra("data");
             String porte = intent.getStringExtra("porte");
+            String especie = intent.getStringExtra("especie");
             String enfermidade = intent.getStringExtra("enfermidade");
             String obsEnfermidade = intent.getStringExtra("obsEnfermidade");
             String local = intent.getStringExtra("local");
             String castrado = intent.getStringExtra("castrado");
 
+            Pet novoPet = new Pet(nome, idade, sexo, data, porte, especie, enfermidade, obsEnfermidade, local,
+                          castrado, pelo, docil, anotacoes);
+
             //  SALVAR NO BANCO
             BancoControllerAnimais controller = new BancoControllerAnimais(this);
-            controller.insereDados(nome, idade, sexo, data, porte, enfermidade, obsEnfermidade, local, castrado, pelo, docil, anotacoes);
+            boolean sucesso = controller.insereDados(novoPet);
 
-             Toast.makeText(this, "Dados salvos!", Toast.LENGTH_SHORT).show();
+            if (sucesso) {
+                Toast.makeText(this, "Dados salvos com sucesso!", Toast.LENGTH_SHORT).show();
 
-            // ENVIAR DADOS PARA FORM3
-            Intent listar = new Intent(this, ListarBanco.class);
+                Intent confirma = new Intent(this, MeusAnimais.class);
+                startActivity(confirma);
 
-            // DADOS FORM1
-            listar.putExtra("nome", nome);
-            listar.putExtra("idade", idade);
-            listar.putExtra("sexo", sexo);
-            listar.putExtra("data", data);
-            listar.putExtra("porte", porte);
+                /*/ passando o objeto inteiro
+                Intent perfilPet = new Intent(this, PerfilPetActivity.class);
+                perfilPet.putExtra("PET_OBJETO", novoPet);
+                //startActivity(perfilPet); */
 
-            // DADOS FORM2
-            listar.putExtra("enfermidade", enfermidade);
-            listar.putExtra("obsEnfermidade", obsEnfermidade);
-            listar.putExtra("local", local);
-            listar.putExtra("castrado", castrado);
-
-            // DADOS FORM3
-            listar.putExtra("pelo", pelo);
-            listar.putExtra("docil", docil);
-            listar.putExtra("anotacoes", anotacoes);
-
-            startActivity(listar);
-
+                finish(); // Fecha a tela de formulário atual
+            } else {
+                Toast.makeText(this, "Erro ao salvar no banco.", Toast.LENGTH_SHORT).show();
+            }
         }
+
         // se a origem do click foi no botão Tela2
         if (view.getId() == R.id.btVoltar3){
             // Chamar a tela MeusAnimais

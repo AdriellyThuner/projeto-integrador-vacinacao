@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class CriaBanco extends SQLiteOpenHelper {
 
     private static final String NOME_BANCO = "banco_form.db";
-    private static final int VERSAO = 6;
+    private static final int VERSAO = 8;
     public CriaBanco(Context context) {
         super(context, NOME_BANCO, null, VERSAO);
     }
@@ -21,6 +21,7 @@ public class CriaBanco extends SQLiteOpenHelper {
                 + "sexo TEXT,"
                 + "data TEXT,"
                 + "porte TEXT,"
+                + "especie TEXT,"
                 + "enfermidade TEXT,"
                 + "descricao TEXT,"
                 + "local TEXT,"
@@ -31,10 +32,23 @@ public class CriaBanco extends SQLiteOpenHelper {
                 + ")";
         db.execSQL(sql);
 
+        sql = "Create table usuarios("
+                + "codigo integer primary key autoincrement,"
+                + "nome text,"
+                + "email text,"
+                + "senha text,"
+                + "cpf,"
+                + "telefone)";
+        db.execSQL(sql);
+
+        sql = "insert into usuarios (nome, email, senha, cpf, telefone)" +
+                "values ('ADMIN', 'admin@teste.com', 'adm123', null, null)";
+        db.execSQL(sql);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS formulario");
+        db.execSQL("DROP TABLE IF EXISTS usuarios");
         onCreate(db);
     }
 }

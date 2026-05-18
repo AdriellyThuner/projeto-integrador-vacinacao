@@ -16,75 +16,64 @@ public class BancoControllerAnimais {
         banco = new CriaBanco(context); //cria o banco e insere os dados
     }
 
-    public long insereDados(
-            String nome, int idade, String sexo, String data, String porte,
-            String enfermidade, String obsEnfermidade, String local, String castrado,
-            String pelo, String docil, String anotacoes
-    ) {
-
-        ContentValues valores;
-        long id;
+    public boolean insereDados(Pet pet) {
         db = banco.getWritableDatabase();
+        ContentValues valores = new ContentValues();
 
-        valores = new ContentValues();
-        valores.put("nome", nome);
-        valores.put("idade", idade);
-        valores.put("sexo", sexo);
-        valores.put("data", data);
-        valores.put("porte", porte);
-        valores.put("enfermidade", enfermidade);
-        valores.put("descricao", obsEnfermidade);
-        valores.put("local", local);
-        valores.put("castrado", castrado);
-        valores.put("pelo", pelo);
-        valores.put("docil", docil);
-        valores.put("anotacoes", anotacoes);
+        valores.put("nome", pet.getNome());
+        valores.put("idade", pet.getIdade());
+        valores.put("sexo", pet.getSexo());
+        valores.put("data", pet.getData());
+        valores.put("porte", pet.getPorte());
+        valores.put("especie", pet.getEspecie());
+        valores.put("enfermidade", pet.getEnfermidade());
+        valores.put("descricao", pet.getObsEnfermidade());
+        valores.put("local", pet.getLocal());
+        valores.put("castrado", pet.getCastrado());
+        valores.put("pelo", pet.getPelo());
+        valores.put("docil", pet.getData());
+        valores.put("anotacoes", pet.getAnotacoes());
 
-
-        id = db.insert("formulario", null, valores);
+        long resultado = db.insert("formulario", null, valores);
         db.close();
 
-        return id;
+        return resultado != -1;
 
     }
 
     // LISTAR REGISTROS
-    public List<String> listar() {
+    public List<Pet> listar() {
+        List<Pet> lista = new ArrayList<>();
+        db = banco.getReadableDatabase();
+        Cursor cursor = db.query("formulario", null, null, null, null, null, "id DESC");
 
-        List<String> lista = new ArrayList<>();
-
-        SQLiteDatabase db = banco.getReadableDatabase();
-
-        Cursor cursor = db.rawQuery("SELECT * FROM formulario", null);
-
-        if (cursor.moveToFirst()) {
+        if (cursor != null && cursor.moveToFirst()) {
             do {
-                String nome = cursor.getString(cursor.getColumnIndexOrThrow("nome"));
-                int idade = cursor.getInt(cursor.getColumnIndexOrThrow("idade"));
-                String sexo = cursor.getString(cursor.getColumnIndexOrThrow("sexo"));
-                String porte = cursor.getString(cursor.getColumnIndexOrThrow("porte"));
-                String enfermidade = cursor.getString(cursor.getColumnIndexOrThrow("enfermidade"));
-                String obsEnfermidade = cursor.getString(cursor.getColumnIndexOrThrow("descricao"));
-                String local = cursor.getString(cursor.getColumnIndexOrThrow("local"));
-                String castrado = cursor.getString(cursor.getColumnIndexOrThrow("castrado"));
-                String pelo = cursor.getString(cursor.getColumnIndexOrThrow("pelo"));
-                String docil = cursor.getString(cursor.getColumnIndexOrThrow("docil"));
-                String anotacoes = cursor.getString(cursor.getColumnIndexOrThrow("anotacoes"));
-
-                String item = "Nome: " + nome + " | Idade: " + idade + " | Sexo: " + sexo + " | Porte: " + porte
-                        + " | Enfermidade: " + enfermidade + " | obsEnfermidade: " + obsEnfermidade + " | Local: " + local
-                        + " | Castrado: " + castrado  + " | Pelo: " + pelo  + " | Docil: " + docil  + " | Anotacoes: " + anotacoes ;
-
-                lista.add(item);
-
+                // Criamos o objeto puxando os dados direto do cursor por índice
+                Pet animal = new Pet(
+                        cursor.getString(1),  // nome
+                        cursor.getInt(2),     // idade
+                        cursor.getString(3),  // sexo
+                        cursor.getString(4),  // data
+                        cursor.getString(5),  // porte
+                        cursor.getString(6),  // especie
+                        cursor.getString(7),  // enfermidade
+                        cursor.getString(8),  // descricao/obsEnfermidade
+                        cursor.getString(9),  // local
+                        cursor.getString(10), // castrado
+                        cursor.getString(11), // pelo
+                        cursor.getString(12), // docil
+                        cursor.getString(13)  // anotacoes
+                );
+                animal.setId(cursor.getInt(0)); // id
+                lista.add(animal);
             } while (cursor.moveToNext());
         }
-
-        cursor.close();
+        if (cursor != null) cursor.close();
         db.close();
-
         return lista;
     }
+
 
     public String excluirDados(int id) {
         String msg = "Registro Excluído"; //exclui

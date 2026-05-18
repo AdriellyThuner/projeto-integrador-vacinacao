@@ -21,7 +21,7 @@ public class Form1 extends AppCompatActivity implements View.OnClickListener {
     ImageButton btVoltar, btFechar;
     EditText txtNome, txtIdade, txtData;
     RadioGroup rgPorte;
-    Spinner spSexo;
+    Spinner spSexo, spEspecie;
     ScrollView form1;
 
     @Override
@@ -45,6 +45,7 @@ public class Form1 extends AppCompatActivity implements View.OnClickListener {
         txtData = findViewById(R.id.txtData);
         rgPorte = findViewById(R.id.rgPorte);
         spSexo = findViewById(R.id.spSexo);
+        spEspecie = findViewById(R.id.spEspecie);
 
         form1 = findViewById(R.id.form1);
 
@@ -52,10 +53,17 @@ public class Form1 extends AppCompatActivity implements View.OnClickListener {
 
         // SPINNER
         String[] sexo = getResources().getStringArray(R.array.sexo);
-        ArrayAdapter<String> aad = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> aadSexo = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, sexo);
 
-        spSexo.setAdapter(aad);
+        spSexo.setAdapter(aadSexo);
+
+        // SPINNER
+        String[] especie = getResources().getStringArray(R.array.especie);
+        ArrayAdapter<String> aadEspecie  = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, especie);
+
+        spEspecie.setAdapter(aadEspecie);
     }
 
     @Override
@@ -66,6 +74,8 @@ public class Form1 extends AppCompatActivity implements View.OnClickListener {
             String idadeStr = txtIdade.getText().toString();
             String data = txtData.getText().toString();
             String sexo = spSexo.getSelectedItem().toString();
+            String especie = spEspecie.getSelectedItem().toString();
+
 
             int idade = 0;
             if (!idadeStr.isEmpty()) {
@@ -90,6 +100,7 @@ public class Form1 extends AppCompatActivity implements View.OnClickListener {
             intent.putExtra("sexo", sexo);
             intent.putExtra("data", data);
             intent.putExtra("porte", porte);
+            intent.putExtra("especie", especie);
 
             // Ir para próxima tela
             startActivity(intent);

@@ -92,6 +92,7 @@ public class Form2 extends AppCompatActivity implements View.OnClickListener{
             String sexo = intent.getStringExtra("sexo");
             String data = intent.getStringExtra("data");
             String porte = intent.getStringExtra("porte");
+            String especie = intent.getStringExtra("especie");
 
             Intent form3 = new Intent(this, Form3.class);
 
@@ -101,6 +102,7 @@ public class Form2 extends AppCompatActivity implements View.OnClickListener{
                 form3.putExtra("sexo", sexo);
                 form3.putExtra("data", data);
                 form3.putExtra("porte", porte);
+                form3.putExtra("especie", especie);
                 //
                 form3.putExtra("enfermidade", enfermidade);
                 form3.putExtra("obsEnfermidade", obsEnfermidade);
