@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/fundo_form"
+        android:background="#6D6D6D"
         android:orientation="vertical">
 
         <!-- Título -->
@@ -41,7 +41,7 @@
                 android:layout_width="62dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="26dp"
-                android:backgroundTint="#FDFAFA"
+                android:backgroundTint="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.045"
@@ -55,7 +55,7 @@
                 android:layout_height="33dp"
                 android:layout_marginTop="26dp"
                 android:layout_marginEnd="28dp"
-                android:backgroundTint="#FDFAFA"
+                android:backgroundTint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/bt_fechar" />

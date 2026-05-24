@@ -85,7 +85,6 @@ public class Form2 extends AppCompatActivity implements View.OnClickListener {
         if (view.getId() == R.id.btProximo2) {
 
             String obsEnfermidade = txtEnfermidade.getText().toString();
-            String local          = spLocal.getSelectedItem().toString();
 
             int idEnfermidade = rgEnfermidade.getCheckedRadioButtonId();
             if (idEnfermidade == -1) {
@@ -95,11 +94,20 @@ public class Form2 extends AppCompatActivity implements View.OnClickListener {
             RadioButton rbEnfermidade = findViewById(idEnfermidade);
             String enfermidade = rbEnfermidade.getText().toString();
 
+
+            String local = spLocal.getSelectedItem().toString();
+            if (spLocal.getSelectedItemPosition() == 0) {
+                Toast.makeText(this, "Selecione o local!", Toast.LENGTH_SHORT).show();
+                spLocal.requestFocus();
+                return;
+            }
+
             int idCastrado = rgCastrado.getCheckedRadioButtonId();
             if (idCastrado == -1) {
                 Toast.makeText(this, "Selecione se é castrado!", Toast.LENGTH_SHORT).show();
                 return;
             }
+
             RadioButton rbCastrado = findViewById(idCastrado);
             String castrado = rbCastrado.getText().toString();
 
