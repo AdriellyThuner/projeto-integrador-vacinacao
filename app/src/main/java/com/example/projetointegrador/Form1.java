@@ -41,7 +41,34 @@ public class Form1 extends AppCompatActivity implements View.OnClickListener {
 
         txtNome   = findViewById(R.id.txtNome);
         txtIdade  = findViewById(R.id.txtIdade);
-        txtData   = findViewById(R.id.txtData);
+        txtData = findViewById(R.id.txtData);
+
+        txtData.addTextChangedListener(new android.text.TextWatcher() {
+            boolean editando = false;
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(android.text.Editable s) {
+                if (editando) return;
+                editando = true;
+
+                String texto = s.toString().replaceAll("[^\\d]", "");
+                StringBuilder formatado = new StringBuilder();
+
+                for (int i = 0; i < texto.length() && i < 8; i++) {
+                    if (i == 2 || i == 4) formatado.append("/");
+                    formatado.append(texto.charAt(i));
+                }
+
+                s.replace(0, s.length(), formatado);
+                editando = false;
+            }
+        });
         rgPorte   = findViewById(R.id.rgPorte);
         spSexo    = findViewById(R.id.spSexo);
         spEspecie = findViewById(R.id.spEspecie);

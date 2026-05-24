@@ -177,7 +177,7 @@
                     android:background="@drawable/customiza_campo"
                     android:ems="10"
                     android:hint="00/00/0000"
-                    android:inputType="date"
+                    android:inputType="phone"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
                     android:textSize="14sp" />
