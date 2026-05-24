@@ -118,15 +118,24 @@ public class Form1 extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         if (view.getId() == R.id.btProximo) {
 
-            String nome     = txtNome.getText().toString();
             String idadeStr = txtIdade.getText().toString();
             String data     = txtData.getText().toString();
-            String sexo     = spSexo.getSelectedItem().toString();
-            String especie  = spEspecie.getSelectedItem().toString();
 
-            int idade = 0;
-            if (!idadeStr.isEmpty()) idade = Integer.parseInt(idadeStr);
+            String nome = txtNome.getText().toString();
+            if (nome.isEmpty()) {
+                Toast.makeText(this, "Selecione o nome!", Toast.LENGTH_SHORT).show();
+                txtNome.requestFocus(); // foco no campo com erro
+                return;
+            }
 
+            String sexo = spSexo.getSelectedItem().toString();
+            if (spSexo.getSelectedItemPosition() == 0) {
+                Toast.makeText(this, "Selecione o sexo!", Toast.LENGTH_SHORT).show();
+                spSexo.requestFocus();
+                return;
+            }
+
+            // PEGA O PORTE
             int idSelecionado = rgPorte.getCheckedRadioButtonId();
             if (idSelecionado == -1) {
                 Toast.makeText(this, "Selecione o porte!", Toast.LENGTH_SHORT).show();
@@ -135,6 +144,18 @@ public class Form1 extends AppCompatActivity implements View.OnClickListener {
 
             RadioButton radioSelecionado = findViewById(idSelecionado);
             String porte = radioSelecionado.getText().toString();
+
+            String especie = spEspecie.getSelectedItem().toString();
+            if (spEspecie.getSelectedItemPosition() == 0) {
+                Toast.makeText(this, "Selecione a espécie!", Toast.LENGTH_SHORT).show();
+                spEspecie.requestFocus();
+                return;
+            }
+
+            int idade = 0;
+            if (!idadeStr.isEmpty()) {
+                idade = Integer.parseInt(idadeStr);
+            }
 
             Intent intent = new Intent(this, Form2.class);
             intent.putExtra("nome",    nome);

@@ -142,7 +142,7 @@
                         android:layout_marginEnd="5dp"
                         android:layout_weight="1"
                         android:background="#FBFBFB"
-                        app:srcCompat="@drawable/bt_menu5" />
+                        app:srcCompat="@drawable/bt_menu2" />
 
                 </LinearLayout>
 
