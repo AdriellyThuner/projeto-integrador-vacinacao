@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/formVac1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#6D6D6D"
+        android:orientation="vertical">
+
+        <!-- Título -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/viewVac1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/fundo_form">
+
+            <ImageButton
+                android:id="@+id/btVoltar"
+                android:layout_width="62dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="26dp"
+                android:backgroundTint="#FDFAFA"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.045"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="?attr/homeAsUpIndicator" />
+
+            <ImageButton
+                android:id="@+id/btFechar"
+                android:layout_width="34dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="28dp"
+                android:backgroundTint="#FDFAFA"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/bt_fechar" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="30dp"
+                android:layout_marginEnd="28dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0">
+
+                <!-- Título -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Nova Vacina"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/barra1"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="40dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/barra1" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Nome -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Nome da Vacina *" />
+
+                <EditText
+                    android:id="@+id/txtNomeVac"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/customiza_campo"
+                    android:ems="10"
+                    android:hint="Digite o nome da vacina"
+                    android:inputType="text"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:pointerIcon="cell"
+                    android:textColorLink="#673AB7"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:id="@+id/rgDose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="15dp">
+
+                    <RadioButton
+                        android:id="@+id/dose"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1° Dose" />
+
+                    <RadioButton
+                        android:id="@+id/dose2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="2° Dose" />
+
+                    <RadioButton
+                        android:id="@+id/doseRef"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Reforço" />
+
+                </RadioGroup>
+
+                <!-- Idade -->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Data de Aplicação" />
+
+                <EditText
+                    android:id="@+id/txtDataVac"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/customiza_campo"
+                    android:ems="10"
+                    android:hint="00/00/0000"
+                    android:inputType="date"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Hora da Vacina" />
+
+                <EditText
+                    android:id="@+id/txtHoraVa"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/customiza_campo"
+                    android:ems="10"
+                    android:hint="Digite o horario da vacina"
+                    android:inputType="time"
+                    android:maxLength="2"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textSize="14sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Veterinário Responsável" />
+
+                <EditText
+                    android:id="@+id/txtVet"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/customiza_campo"
+                    android:ems="10"
+                    android:hint="Digite o nome completo do veterinário"
+                    android:inputType="textPersonName"
+                    android:maxLength="2"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="CRM" />
+
+                <EditText
+                    android:id="@+id/txtCRMVac"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/customiza_campo"
+                    android:ems="10"
+                    android:hint="Digite o CRM do veterinário"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textSize="14sp" />
+
+                <!-- Botão -->
+
+                <Button
+                    android:id="@+id/btnProximo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#282626"
+                    android:text="Próximo" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+</ScrollView>

@@ -16,7 +16,7 @@ public class BancoControllerAnimais {
         banco = new CriaBanco(context); //cria o banco e insere os dados
     }
 
-    public boolean insereDados(Pet pet) {
+    public long insereDados(Pet pet) {
         db = banco.getWritableDatabase();
         ContentValues valores = new ContentValues();
 
@@ -31,13 +31,16 @@ public class BancoControllerAnimais {
         valores.put("local", pet.getLocal());
         valores.put("castrado", pet.getCastrado());
         valores.put("pelo", pet.getPelo());
-        valores.put("docil", pet.getData());
+        valores.put("docil", pet.getDocil());
         valores.put("anotacoes", pet.getAnotacoes());
 
         long resultado = db.insert("formulario", null, valores);
+
+
+
         db.close();
 
-        return resultado != -1;
+        return resultado;
 
     }
 

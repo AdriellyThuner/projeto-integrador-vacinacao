@@ -82,12 +82,12 @@ public class Form3 extends AppCompatActivity implements View.OnClickListener{
 
             //  SALVAR NO BANCO
             BancoControllerAnimais controller = new BancoControllerAnimais(this);
-            boolean sucesso = controller.insereDados(novoPet);
+            long idGerado = controller.insereDados(novoPet);
 
-            if (sucesso) {
-                Toast.makeText(this, "Dados salvos com sucesso!", Toast.LENGTH_SHORT).show();
-
+            if (idGerado != -1) {
+                novoPet.setId((int)idGerado);
                 Intent confirma = new Intent(this, MeusAnimais.class);
+                confirma.putExtra("PET_OBJETO", novoPet);
                 startActivity(confirma);
 
                 /*/ passando o objeto inteiro

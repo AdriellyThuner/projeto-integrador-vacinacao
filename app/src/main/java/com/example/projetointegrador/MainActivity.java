@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     ImageButton btCarteiraVacinacao, btMeusAnimais, btCalendarioGeral, iconUsuario, btMeuPerfil;
+    String emailLogado;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+         emailLogado = getIntent().getStringExtra("emailLogado");
 
         // BOTOES
         btCarteiraVacinacao = findViewById(R.id.btCarteiraVacinacao);
@@ -40,12 +43,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // se a origem do click foi no botão Tela1
         if (view.getId() == R.id.btCarteiraVacinacao){
             // Chamar a tela CarteiraVacinacao
-            Intent tela1 = new Intent(this, MeusAnimais.class);
+            Intent tela1 = new Intent(this, Minhas_Vacinas.class);
             startActivity(tela1);
         }
         if (view.getId() == R.id.iconUsuario){
             // Chamar a tela CarteiraVacinacao
             Intent tela1 = new Intent(this, InfoUsuario.class);
+            tela1.putExtra("emailLogado", emailLogado);
             startActivity(tela1);
         }
         // se a origem do click foi no botão Tela2
@@ -57,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // se a origem do click foi no botão Tela2
         if (view.getId() == R.id.btCalendarioGeral){
             // Chamar a tela MeusAnimais
-            Intent tela2 = new Intent(this, Form3.class);
+            Intent tela2 = new Intent(this, formVac1.class);
             startActivity(tela2);
         }
 
@@ -65,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view.getId() == R.id.btMeuPerfil){
             // Chamar a tela MeusAnimais
             Intent infoUsuario = new Intent(this, InfoUsuario.class);
+           infoUsuario.putExtra("emailLogado",emailLogado);
             startActivity(infoUsuario);
         }
 

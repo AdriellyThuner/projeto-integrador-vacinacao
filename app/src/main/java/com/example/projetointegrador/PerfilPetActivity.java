@@ -1,41 +1,59 @@
 package com.example.projetointegrador;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PerfilPetActivity extends AppCompatActivity {
 
-    TextView tvNome, tvIdade, tvEspecie, tvPorte, tvResumo;
+    TextView txtPerfilNome, txtPerfilIdade, txtPerfilEspecie, txtPerfilPorte, txtPerfilResumo;
+
+    Button btExcluirPet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_pet);
 
-        tvNome = findViewById(R.id.tvPerfilNome);
-        tvIdade = findViewById(R.id.tvPerfilIdade);
-        tvEspecie = findViewById(R.id.tvPerfilEspecie);
-        tvPorte = findViewById(R.id.tvPerfilPorte);
-        tvResumo = findViewById(R.id.tvPerfilResumo);
+        txtPerfilNome = findViewById(R.id.txtPerfilNome);
+        txtPerfilIdade = findViewById(R.id.txtPerfilIdade);
+        txtPerfilEspecie = findViewById(R.id.txtPerfilEspecie);
+        txtPerfilPorte = findViewById(R.id.txtPerfilPorte);
+        txtPerfilResumo = findViewById(R.id.txtPerfilResumo);
+        btExcluirPet = findViewById(R.id.btExcluirPet);
 
-        // Recupera o objeto Animal enviado pela Form3
+        // Pega o objeto (Pet) com todos os dados que foi enviado pelo Form3
+
         Pet pet = (Pet) getIntent().getSerializableExtra("PET_OBJETO");
+        Vacina vacina = (Vacina) getIntent().getSerializableExtra("VACINA_OBJ");
 
         if (pet != null) {
-            // Seta as informações na tela usando os métodos do Objeto
-            tvNome.setText("Nome: " + pet.getNome());
-            tvIdade.setText("Idade: " + pet.getIdade() + " anos");
-            tvEspecie.setText("Espécie: " + pet.getEspecie() + " (" + pet.getSexo() + ")");
-            tvPorte.setText("Porte: " + pet.getPorte());
+            // Aqui mostra os dados do Pet
+            txtPerfilNome.setText("Nome: " + pet.getNome());
+            txtPerfilIdade.setText("Idade: " + pet.getIdade() + " anos");
+            txtPerfilEspecie.setText("Espécie: " + pet.getEspecie() + " (" + pet.getSexo() + ")");
+            txtPerfilPorte.setText("Porte: " + pet.getPorte());
 
-            String resumoGeral = "Pelo: " + pet.getPelo() + "\n" +
-                    "Dócil: " + pet.getDocil() + "\n" +
-                    "Castrado: " + pet.getCastrado() + "\n" +
-                    "Enfermidade: " + pet.getEnfermidade() + " (" + pet.getObsEnfermidade() + ")\n" +
-                    "Anotações: " + pet.getAnotacoes();
+            String resumoGeral =
+                    "Pelo: " + pet.getPelo() + "\n" +
+                            "Dócil: " + pet.getDocil() + "\n" +
+                            "Castrado: " + pet.getCastrado() + "\n" +
+                            "Enfermidade: " + pet.getEnfermidade() + " (" + pet.getObsEnfermidade() + ")\n" +
+                            "Anotações: " + pet.getAnotacoes();
 
-            tvResumo.setText(resumoGeral);
+            txtPerfilResumo.setText(resumoGeral);
+
+            btExcluirPet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    new BancoControllerAnimais(PerfilPetActivity.this).excluirDados(pet.getId());
+                    finish();
+                }
+            });
         }
     }
 }

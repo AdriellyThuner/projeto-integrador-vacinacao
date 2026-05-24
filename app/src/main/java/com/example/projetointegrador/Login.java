@@ -35,6 +35,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         btEntrar.setOnClickListener(this);
         txtCadastroLink.setOnClickListener(this);
 
+
+
     }
     @Override
     public void onClick(View v) {
@@ -56,6 +58,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
                     if (dados.moveToFirst()) {
                         Intent tela = new Intent(this, MainActivity.class);
+                        tela.putExtra("emailLogado", txtEmail.getText().toString());
+                        //passa o e-mail do usuario para a MainActivity
                         startActivity(tela);
                         finish();
                     } else {
@@ -67,7 +71,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             }
         }
         if (v.getId() == R.id.txtCadastroLink) {
-            Intent tela = new Intent(this, Form1.class); // COLOQUE AQUI O LINK DA TELA DE CADASTRO
+            Intent tela = new Intent(this, Cadastre_se.class); // COLOQUE AQUI O LINK DA TELA DE CADASTRO
             startActivity(tela);
         }
     }
