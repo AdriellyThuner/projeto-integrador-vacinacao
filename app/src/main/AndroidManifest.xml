@@ -20,6 +20,26 @@
             android:name=".CalendarActivity"
             android:exported="false" />
         <activity
+            android:name=".Minhas_Vacinas"
+            android:exported="false" />
+        <activity android:name=".VacinasPetActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".Perfil_Vacina"
+            android:exported="false" />
+        <activity
+            android:name=".form_vac3"
+            android:exported="false" />
+        <activity
+            android:name=".formVac2"
+            android:exported="false" />
+        <activity
+            android:name=".formVac1"
+            android:exported="false" />
+        <activity
+            android:name=".Cadastre_se"
+            android:exported="false" />
+        <activity
             android:name=".InfoUsuario"
             android:exported="false" />
         <activity

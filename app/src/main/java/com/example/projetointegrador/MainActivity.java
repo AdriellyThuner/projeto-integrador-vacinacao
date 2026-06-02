@@ -23,6 +23,8 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     ImageButton btCarteiraVacinacao, btMeusAnimais, btCalendarioGeral, iconUsuario, btMeuPerfil;
+  
+    String emailLogado;
     BottomNavigationView bottomNav;
     TextView txtQuantidadeAnimais;
 
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+         emailLogado = getIntent().getStringExtra("emailLogado");
 
         // BOTOES
         btCarteiraVacinacao = findViewById(R.id.btCarteiraVacinacao);
@@ -81,13 +85,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         // AO CLICAR EM NO BOTÃO "btCarteiraVacinacao" VAI PARA A TELA CARTEIRA E VACINACAO
         if (view.getId() == R.id.btCarteiraVacinacao){
-            // Chama a tela MeusAnimais
-            Intent tela1 = new Intent(this, MeusAnimais.class); // Mudar a tela!
+            // Chamar a tela CarteiraVacinacao
+            Intent tela1 = new Intent(this, Minhas_Vacinas.class);
             startActivity(tela1);
         }
         if (view.getId() == R.id.iconUsuario){
             // Chama a tela InfoUsuario
             Intent tela1 = new Intent(this, InfoUsuario.class);
+            tela1.putExtra("emailLogado", emailLogado);
             startActivity(tela1);
         }
         // AO CLICAR EM NO BOTÃO "btMeusAnimais" VAI PARA A TELA MEUS PETS/ANIMAIS
@@ -106,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view.getId() == R.id.btMeuPerfil){
             // Chamar a tela InfoUsuario
             Intent infoUsuario = new Intent(this, InfoUsuario.class);
+           infoUsuario.putExtra("emailLogado",emailLogado);
             startActivity(infoUsuario);
         }
     }
