@@ -2,7 +2,7 @@ package com.example.projetointegrador;
 
 import java.io.Serializable;
 
-// Implementar Serializable permite passar o objeto inteiro entre Activities
+// Serializable permite passar o objeto inteiro entre Activities
 public class Pet implements Serializable {
     private int id;
     private String nome;
@@ -18,8 +18,10 @@ public class Pet implements Serializable {
     private String pelo;
     private String docil;
     private String anotacoes;
+    private String fotoUrl;
 
-    // Construtor completo para usar ao recuperar do banco ou criar no form
+
+    // Construtor
     public Pet(String nome, int idade, String sexo, String data, String porte, String especie,
                String enfermidade, String obsEnfermidade, String local, String castrado,
                String pelo, String docil, String anotacoes) {
@@ -36,7 +38,10 @@ public class Pet implements Serializable {
         this.pelo = pelo;
         this.docil = docil;
         this.anotacoes = anotacoes;
+        this.fotoUrl = null;
     }
+    public void setFotoUrl(String fotoUrl) { this.fotoUrl = fotoUrl; }
+
 
     // Getters e Setters
     public int getId() {
@@ -98,4 +103,7 @@ public class Pet implements Serializable {
     public String getAnotacoes() {
         return anotacoes;
     }
+
+    public String getFotoUrl() { return fotoUrl; }
+
 }

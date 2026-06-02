@@ -95,4 +95,37 @@ public class BancoControllerAnimais {
         db.close();
         return msg;
     }
+
+    /*public String alteraDados(Pet pet){
+
+        String msg = "Dados alterados com sucesso!!!" ;
+
+        db = banco.getReadableDatabase();
+
+        ContentValues valores = new ContentValues() ;
+        valores.put("nome" , pet.getNome() ) ;
+        valores.put("idade", pet.getIdade());
+        valores.put("especie", pet.getEspecie());
+        valores.put("sexo", pet.getSexo());
+        valores.put("data", pet.getData());
+        valores.put("especie", pet.getEspecie());
+        valores.put("enfermidade", pet.getEnfermidade());
+        valores.put("local", pet.getLocal());
+        valores.put("castrado", pet.getCastrado());
+        valores.put("pelo", pet.getPelo());
+        valores.put("Docil",pet.getDocil());
+        valores.put("Docil",pet.getAnotacoes());
+
+        String condicao = "codigo = " + pet.getId();
+
+        int linha ;
+        linha = db.update("formulario", valores, condicao, null) ;
+        //atualiza
+        if (linha < 1){
+            msg = "Erro ao alterar os dados" ;
+        }
+
+        db.close();
+        return msg;
+    } */
 }
