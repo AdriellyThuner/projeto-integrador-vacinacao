@@ -3,118 +3,130 @@ package com.example.projetointegrador;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.ArrayAdapter; // ⚠️ não utilizado — pode remover
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
-import android.widget.Spinner;
+import android.widget.Spinner;      // ⚠️ não utilizado — pode remover
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.core.graphics.Insets;        // ⚠️ não utilizado — pode remover
+import androidx.core.view.ViewCompat;         // ⚠️ não utilizado — pode remover
+import androidx.core.view.WindowInsetsCompat; // ⚠️ não utilizado — pode remover
 
 public class formVac1 extends AppCompatActivity implements View.OnClickListener {
 
+
     Button btnProximo;
     ImageButton btVoltar, btFechar;
-    EditText txtNomeVac, txtDataVac, txtHoraVa, txtVet, txtCRMVac;
-    RadioGroup rgDose;
+
+
+    EditText txtNome_vacina;    // nome da vacina
+    EditText txtData_aplicacao; // data em que foi aplicada
+    EditText txtHora_aplicacao; // horário da aplicação
+    EditText txtNome_vet;       // nome do veterinário
+    EditText txtCRMV_vet;       // CRMV do veterinário
+
+    RadioGroup rgDose; // grupo de opções: 1ª Dose, 2ª Dose ou Reforço
+
 
     ScrollView formVac1;
 
-    BancoControllerVacinas bdController;
-    Pet pet; // representa o dono da vacina
+    Pet pet; // objeto do pet dono da vacina, recebido da tela anterior
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form_vac1); // R.layout busca a pasta layout
-        //R.classe que é uma espécie de catalogo de tudo oq tem no projeto
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_form_vac1);
 
-        bdController = new BancoControllerVacinas(this);
-        pet = (Pet) getIntent().getSerializableExtra("PET_OBJETO"); //recupera os dados do animal enviados da tela anterior
 
-        //BOTOES
+        // Recupera o objeto Pet enviado pela tela anterior via Intent
+        pet = (Pet) getIntent().getSerializableExtra("PET_OBJETO");
+
+
         btnProximo = findViewById(R.id.btnProximo);
-        btVoltar = findViewById(R.id.btVoltar);
-        btFechar = findViewById(R.id.btFechar);
+        btVoltar   = findViewById(R.id.btVoltar);
+        btFechar   = findViewById(R.id.btFechar);
+
 
         btnProximo.setOnClickListener(this);
         btVoltar.setOnClickListener(this);
         btFechar.setOnClickListener(this);
 
-        //CAMPOS
-        txtNomeVac = findViewById(R.id.txtNomeVac);
-        txtDataVac = findViewById(R.id.txtDataVac);
-        txtHoraVa = findViewById(R.id.txtHoraVa);
-        txtVet = findViewById(R.id.txtVet);
-        txtCRMVac = findViewById(R.id.txtCRMVac);
-        rgDose = findViewById(R.id.rgDose);
 
+        txtNome_vacina    = findViewById(R.id.txtNome_vacina);
+        txtData_aplicacao = findViewById(R.id.txtData_aplicacao);
+        txtHora_aplicacao = findViewById(R.id.txtHora_aplicacao);
+        txtNome_vet       = findViewById(R.id.txtNome_vet);
+        txtCRMV_vet       = findViewById(R.id.txtCRMV_vet);
+        rgDose            = findViewById(R.id.rgDose);
 
         formVac1 = findViewById(R.id.formVac1);
-
-
-
     }
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.btnProximo) {
-
-            String nomeVac = txtNomeVac.getText().toString();
-            String dataVac = txtDataVac.getText().toString();
-            String horaVac = txtHoraVa.getText().toString();
-            String vetVac = txtVet.getText().toString();
-            String crmVac = txtCRMVac.getText().toString();
 
 
-            // CAPTURAR Dose
+        if (view.getId() == R.id.btnProximo) {
+
+
+            String nome_vacina    = txtNome_vacina.getText().toString().trim();
+            String Data_aplicacao = txtData_aplicacao.getText().toString().trim();
+            String Hora_aplicacao = txtHora_aplicacao.getText().toString().trim();
+            String Nome_vet       = txtNome_vet.getText().toString().trim();
+            String CRMV_vet       = txtCRMV_vet.getText().toString().trim();
+
+
+            if (nome_vacina.isEmpty()) {
+                txtNome_vacina.setError("Campo obrigatório");
+                return;
+            }
+
+            //  Captura o RadioButton selecionado
             int idSelecionadoVac = rgDose.getCheckedRadioButtonId();
-            if (idSelecionadoVac == -1) { //se nenhum radioButton foi selecionado (-1 sgnifica sem seleção)
+
+
+            if (idSelecionadoVac == -1) {
                 Toast.makeText(this, "Selecione o tipo/dose da vacina!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            // Pega o texto do RadioButton selecionado (ex: "1° Dose", "2° Dose", "Reforço")
             RadioButton radioSelecionadoVac = findViewById(idSelecionadoVac);
             String dose = radioSelecionadoVac.getText().toString();
 
-            // 1. Criamos o objeto Vacina com os dados capturados nesta tela
-            Vacina vacina = new Vacina(nomeVac, dataVac, horaVac, vetVac, crmVac, dose);
+            // Cria o objeto Vacina com os dados desta tela
+            // Os campos do form2 e form3 serão adicionados nas próximas telas
+            Vacina vacina = new Vacina(nome_vacina, dose, Data_aplicacao, Hora_aplicacao, Nome_vet, CRMV_vet);
 
-            // 2. Criamos a Intent para a formVac2
+            // Navega para o formVac2 passando os objetos
             Intent intent = new Intent(this, formVac2.class);
 
-            // 3. Como a classe Vacina é Serializable, passamos o objeto inteiro na "mala"
-            intent.putExtra("VACINA_OBJ", vacina);
 
-            intent.putExtra("PET_OBJETO", pet);
+            intent.putExtra("VACINA_OBJ", vacina); // vacina com dados do form1
+            intent.putExtra("PET_OBJETO", pet);     // pet dono da vacina
 
-            // Ir para próxima tela
             startActivity(intent);
         }
 
 
-        // VOLTAR TELA
         if (view.getId() == R.id.btVoltar) {
             finish();
         }
-        // FECHAR E IR AO MENU
-        if (view.getId() == R.id.btFechar) {
 
-            //  FormBanco.limpar(); // limpa os dados
+
+        if (view.getId() == R.id.btFechar) {
             Intent main = new Intent(this, MainActivity.class);
             main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(main);
             finish();
         }
-
     }
-
 }

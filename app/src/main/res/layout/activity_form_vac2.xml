@@ -108,7 +108,7 @@
 
 
                 <EditText
-                    android:id="@+id/txtDetVac"
+                    android:id="@+id/txtLote"
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:hint="Digite o lote da Vacina"
@@ -120,7 +120,7 @@
                     android:inputType="number"
                     android:textSize="14sp" />
                 <EditText
-                    android:id="@+id/txtDetVac1"
+                    android:id="@+id/txtData_val"
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:hint="Digite a Validade da Vacina"
@@ -132,7 +132,7 @@
                     android:inputType="date"
                     android:textSize="14sp" />
                 <EditText
-                    android:id="@+id/txtDetVac2"
+                    android:id="@+id/txtFabricante"
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:hint="Digite o Fabricante da Vacina"
@@ -198,7 +198,7 @@
 
 
                 <EditText
-                    android:id="@+id/txtDatRef"
+                    android:id="@+id/txtDataRef"
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:hint="Digite a data do Reforço"

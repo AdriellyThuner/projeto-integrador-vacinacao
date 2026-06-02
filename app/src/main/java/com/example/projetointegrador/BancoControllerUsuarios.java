@@ -31,8 +31,8 @@ public class BancoControllerUsuarios {
                               String txtCadCRM, String txtCadOng,
                               String txtCadEmail, String txtCadSenha) {
         ContentValues valores;
-        long resultado; //variavel que recebe o retorno da inserção
-        db = banco.getWritableDatabase(); // abre o banco em modo escrita (necessario para inserir dados)
+        long resultado;
+        db = banco.getWritableDatabase();
 
         valores = new ContentValues();
         valores.put("nome", txtCadNome);
@@ -64,6 +64,6 @@ public class BancoControllerUsuarios {
         if (cursor != null) {
             cursor.moveToFirst();
         }
-        return cursor; // não feche o db aqui
+        return cursor;
     }
 }

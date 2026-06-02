@@ -1,99 +1,104 @@
 package com.example.projetointegrador;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import java.util.List;
 
 public class Perfil_Vacina extends AppCompatActivity {
 
-    TextView txtPerfilNome,  txtPerfilNomeVac, txtPerfildataVac, txtPerfilvetVac, txtPerfilDose, txtResumo;
 
+    TextView txtPerfilNome;       // nome do pet
+    TextView txtPerfilSubtitulo;  // dose da vacina
+    TextView txtPerfilNomeVac;    // nome da vacina
+    TextView txtPerfildataVac;    // data de aplicação
+    TextView txtPerfilHoraVac;    // hora de aplicação
+    TextView txtPerfilLote;       // lote da vacina
+    TextView txtPerfilFabricante; // fabricante
+    TextView txtPerfilValVac;     // validade da vacina
+    TextView txtPerfilVet;        // nome do veterinário
+    TextView txtPerfilCRMV;       // CRMV do veterinário
+    TextView txtPerfilNome_pro;   // nome da próxima vacina
+    TextView txtPerfilData_pro;   // data da próxima vacina
+
+    ImageButton btVoltarPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_perfil_vacina);
 
 
+        txtPerfilNome      = findViewById(R.id.txtPerfilNome);
+        txtPerfilSubtitulo = findViewById(R.id.txtPerfilSubtitulo);
+        txtPerfilNomeVac   = findViewById(R.id.txtPerfilNomeVac);
+        txtPerfildataVac   = findViewById(R.id.txtPerfildataVac);
+        txtPerfilHoraVac   = findViewById(R.id.txtPerfilHoraVac);
+        txtPerfilLote      = findViewById(R.id.txtPerfilLote);
+        txtPerfilFabricante = findViewById(R.id.txtPerfilFabricante);
+        txtPerfilValVac    = findViewById(R.id.txtPerfilValVac);
+        txtPerfilVet       = findViewById(R.id.txtPerfilVet);
+        txtPerfilCRMV      = findViewById(R.id.txtPerfilCRMV);
+        txtPerfilNome_pro  = findViewById(R.id.txtPerfilNome_pro);
+        txtPerfilData_pro  = findViewById(R.id.txtPerfilData_pro);
+        btVoltarPerfil     = findViewById(R.id.btVoltarPerfil);
 
-        txtPerfilNome = findViewById(R.id.txtPerfilNome);
 
-        txtPerfilNomeVac = findViewById(R.id.txtPerfilNomeVac);
-        txtPerfildataVac = findViewById(R.id.txtPerfildataVac);
-        txtPerfilvetVac= findViewById(R.id.txtPerfilvetVac);
-        txtPerfilDose=findViewById(R.id.txtPerfilDose);
-        txtResumo = findViewById(R.id.txtResumo);
+        btVoltarPerfil.setOnClickListener(v -> finish());
 
+        //  Recupera os objetos enviados pela tela anterior
+        Pet pet       = (Pet)    getIntent().getSerializableExtra("PET_OBJETO");
+        Vacina vacina = (Vacina) getIntent().getSerializableExtra("VACINA_OBJ");
 
-        // Recupera o objeto Animal enviado pela Form3
-        Pet pet = (Pet) getIntent().getSerializableExtra("PET_OBJETO");
 
         if (pet == null) {
             Toast.makeText(this, "Erro ao carregar pet!", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
-        txtPerfilNome.setText("Nome: " + pet.getNome());
+
+        // Preenche o nome do pet no topo
+        txtPerfilNome.setText(pet.getNome());
 
 
-
-
-        Vacina vacina = (Vacina) getIntent().getSerializableExtra("VACINA_OBJ");
-
-        if (pet != null) {
-
-            txtPerfilNome.setText("Nome: " + pet.getNome());
-
-
-            // SE EXISTIR VACINA
-            if (vacina != null) {
-
-                txtPerfilNomeVac.setText("Nome da vacina: " + vacina.getNomeVac());
-
-                txtPerfildataVac.setText("Data: " + vacina.getDataVac());
-
-                txtPerfilvetVac.setText("Veterinário: " + vacina.getVetVac());
-
-                txtPerfilDose.setText("Dose: " + vacina.getDose());
-
-                txtResumo.setText(
-                        "\n===== VACINA =====" +
-                                "\nNome: " + vacina.getNomeVac() +
-                                "\nData da Aplicação: " + vacina.getDataVac() +
-                                "\nHorário da Vacina: " + vacina.getHoraVac() +
-                                "\nVeterinário: " + vacina.getVetVac() +
-                                "\nCRM:: " + vacina.getCrmVac() +
-                                "\nDose: " + vacina.getDose() +
-                                "\n===== DETALHES DA VACINA =====" +
-                                "\nLote: " + vacina.getDetVac() +
-                                "\nValidade da Vacina: " + vacina.getDetVac1() +
-                                "\nFabricante da Vacina: " + vacina.getDetVac2() +
-                                "\n===== PROXIMA VACINA =====" +
-                                "\nPossui reforço?: " + vacina.getDose2() +
-                                "\nVacina de Reforço: " + vacina.getRefVac() +
-                                "\nData da Proxima aplicação: " + vacina.getDataref() +
-                                "\n===== OBS =====" +
-                                "\nOBS: " + vacina.getObsVac() +
-                                "\nPróxima: " + vacina.getProVac()
-                );
-
-            } else {
-
-                Toast.makeText(this,
-                        "Vacina não encontrada!",
-                        Toast.LENGTH_SHORT).show();
-            }
+        if (vacina == null) {
+            Toast.makeText(this, "Vacina não encontrada!", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
         }
+
+        // informações principais
+        txtPerfilSubtitulo.setText("Dose: " + vacina.getDose());
+        txtPerfilNomeVac.setText(vacina.getNomeVac());
+        txtPerfildataVac.setText(vacina.getData_aplicacao());
+        txtPerfilHoraVac.setText(vacina.getHora_aplicacao());
+
+        //  detalhes da vacina
+        txtPerfilLote.setText("Lote: " + vacina.getLote()
+                + " | Validade: " + vacina.getData_val());
+
+
+        if (vacina.getFabricante() != null && !vacina.getFabricante().isEmpty()) {
+            txtPerfilFabricante.setVisibility(android.view.View.VISIBLE);
+            txtPerfilFabricante.setText("Fabricante: " + vacina.getFabricante());
+        }
+
+
+        if (vacina.getData_val() != null && !vacina.getData_val().isEmpty()) {
+            txtPerfilValVac.setVisibility(android.view.View.VISIBLE);
+            txtPerfilValVac.setText("Validade: " + vacina.getData_val());
+        }
+
+        //  veterinário responsável
+        txtPerfilVet.setText("Veterinário: " + vacina.getNome_vet());
+        txtPerfilCRMV.setText("CRMV: " + vacina.getCRMV_vet());
+
+        // próxima vacina
+        txtPerfilNome_pro.setText("Próxima: " + vacina.getNome_pro_vac());
+        txtPerfilData_pro.setText("Data: "    + vacina.getData_pro_vac());
     }
 }

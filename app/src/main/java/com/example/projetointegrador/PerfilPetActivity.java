@@ -55,7 +55,6 @@ public class PerfilPetActivity extends AppCompatActivity {
         btVoltarPerfil.setOnClickListener(v -> finish());
 
         Pet pet = (Pet) getIntent().getSerializableExtra("PET_OBJETO");
-        Vacina vacina = (Vacina) getIntent().getSerializableExtra("VACINA_OBJ");
 
         if (pet != null) {
 
