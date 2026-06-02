@@ -29,9 +29,6 @@
             android:name=".PerfilPetActivity"
             android:exported="false" />
         <activity
-            android:name=".ConfirmaForms"
-            android:exported="false" />
-        <activity
             android:name=".Form1"
             android:exported="false" />
         <activity

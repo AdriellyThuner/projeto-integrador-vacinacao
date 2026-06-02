@@ -6,17 +6,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     ImageButton btCarteiraVacinacao, btMeusAnimais, btCalendarioGeral, iconUsuario, btMeuPerfil;
-
     BottomNavigationView bottomNav;
+    TextView txtQuantidadeAnimais;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -31,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btCalendarioGeral = findViewById(R.id.btCalendarioGeral);
         iconUsuario = findViewById(R.id.iconUsuario);
         btMeuPerfil = findViewById(R.id.btMeuPerfil);
+        txtQuantidadeAnimais = findViewById(R.id.txtQuantidadeAnimais);
 
         btCarteiraVacinacao.setOnClickListener(this);
         btMeusAnimais.setOnClickListener(this);
@@ -40,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setSelectedItemId(R.id.nav_home); // marca o ícone como ativo
+
 
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
@@ -66,8 +76,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return false;
         });
     }
-
-
 
     @Override
     public void onClick(View view) {
@@ -100,6 +108,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent infoUsuario = new Intent(this, InfoUsuario.class);
             startActivity(infoUsuario);
         }
-
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Dispara a contagem automática toda vez que o usuário visualizar esta tela
+        atualizarContadorSupabase();
+    }
+
+    private void atualizarContadorSupabase() {
+        OkHttpClient client = new OkHttpClient();
+        String url = SupabaseConfig.URL + "/rest/v1/animais?select=count";
+
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .addHeader("apikey", SupabaseConfig.API_KEY)
+                .addHeader("Authorization", "Bearer " + SupabaseConfig.API_KEY)
+                .addHeader("Prefer", "count=exact") // Exige a contagem exata do banco
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUiThread(() -> txtQuantidadeAnimais.setText("0"));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful() && response.body() != null) {
+                    String strResposta = response.body().string();
+                    // Limpa o JSON do Supabase deixando apenas o número puro
+                    String apenasNumeros = strResposta.replaceAll("[^0-9]", "");
+
+                    runOnUiThread(() -> {
+                        if (!apenasNumeros.isEmpty()) {
+                            txtQuantidadeAnimais.setText(apenasNumeros);
+                        } else {
+                            txtQuantidadeAnimais.setText("0");
+                        }
+                    });
+                }
+            }
+        });
+    }
+
 }
