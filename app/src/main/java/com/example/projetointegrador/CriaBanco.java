@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class CriaBanco extends SQLiteOpenHelper {
 
     private static final String NOME_BANCO = "banco_form.db";
-    private static final int VERSAO = 8;
+    private static final int VERSAO = 9;
     public CriaBanco(Context context) {
         super(context, NOME_BANCO, null, VERSAO);
     }
