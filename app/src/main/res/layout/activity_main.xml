@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
                     android:elevation="3dp"
-                    android:text="Vacinas Pendentes"
+                    android:text="Pets Cadastrados:"
                     android:textAlignment="viewStart"
                     android:textColor="#767373"
                     android:textSize="20sp"
@@ -86,14 +86,14 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView16"
+                    android:id="@+id/txtQuantidadeAnimais"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="55dp"
                     android:layout_marginEnd="30dp"
                     android:elevation="3dp"
-                    android:text="10"
+                    android:text="0"
                     android:textAlignment="viewStart"
                     android:textColor="#767373"
                     android:textSize="60sp"
