@@ -1,6 +1,6 @@
 package com.example.projetointegrador;
 
-import android.annotation.SuppressLint; // ⚠️ não utilizado — pode remover
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +15,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.JsonArray; // ⚠️ não utilizado diretamente — usado só no parseString
+
 import com.google.gson.JsonParser;
 import com.google.gson.JsonObject;
 
